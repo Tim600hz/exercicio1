@@ -1,0 +1,33 @@
+//Leitor de arquivo + modificador de texto
+
+package org.example;
+import java.io.*;
+
+public class leitorDeArquivo {
+    public static void main(String[] args) throws IOException {
+        try {
+            File arquivo = new File("D:\\Dev\\Orientação a Objetos\\Projeto Java de prática\\Chicoutpratica\\exercicio1\\Arquivo.txt");
+            FileReader leitor = new FileReader(arquivo);
+            BufferedReader leitorArquivo = new BufferedReader(leitor);
+
+            String linha;
+            while ((linha = leitorArquivo.readLine()) != null) {
+                System.out.println(linha);
+            }
+            leitor.close();
+
+            FileWriter gravador = new FileWriter(arquivo, true);
+            BufferedWriter gravadorArquivo = new BufferedWriter(gravador);
+            String[] modificador = {"Esta é uma modificação"};
+            gravadorArquivo.newLine();
+            for (String s : modificador) {
+                gravadorArquivo.write(s+ "\n");
+            }
+            gravadorArquivo.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            System.out.println("Arquivo não encontrado");
+        }
+
+    }
+}
